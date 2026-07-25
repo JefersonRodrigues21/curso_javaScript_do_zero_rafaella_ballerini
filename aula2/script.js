@@ -20,4 +20,4 @@ function adicionarTarefa() {
             let mensagemErro = "Digite uma tarefa!";
             document.getElementById("mensagem").textContent = mensagemErro;
         }
-    }
+}
