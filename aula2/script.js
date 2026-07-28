@@ -1,18 +1,18 @@
-var tarefas = [];
+let tarefas = [];
 
 function adicionarTarefa() {
 
   const inputTarefa = document.getElementById("inputTarefa"); //busca imput tarefa
-  var tarefa = inputTarefa.value.trim(); //pega o valor do input e remove espaços em branco no início e no final (trim - remove espaços em branco)
+  let tarefa = inputTarefa.value.trim(); //pega o valor do input e remove espaços em branco no início e no final (trim - remove espaços em branco)
   const mensagem = document.getElementById("mensagem"); //busca a div de mensagem
 
   //se o valor do input for vazio então mostre uma mensagem de erro
   if (tarefa == "") {
     //mostre uma mensagem de erro
-    var mensagemErro = "Digite uma tarefa!";
+    let mensagemErro = "Digite uma tarefa!";
     mensagem.textContent = mensagemErro; //mostra a mensagem de erro
   } else {
-    var mensagemSucesso = "Tarefa adicionada com sucesso!"; //mensagem de tarefa adicionada com sucesso!
+    let mensagemSucesso = "Tarefa adicionada com sucesso!"; //mensagem de tarefa adicionada com sucesso!
     mensagem.textContent = mensagemSucesso; //mostra a mensagem de sucesso
     tarefas.push(tarefa); //adiciona a tarefa no array de tarefas
     renderizarTarefas(); //chama a função renderizarTarefas para atualizar a lista de tarefas
@@ -22,7 +22,6 @@ function adicionarTarefa() {
 }
 
 function renderizarTarefas() {
-  
   const listaTarefas = document.getElementById("listaTarefas"); //cria novo item (li) e insere na (lista ul)
   listaTarefas.innerHTML = ""; //limpa a lista de tarefas antes de renderizar novamente
 
@@ -33,13 +32,21 @@ function renderizarTarefas() {
 
   //for (iterador, condição, incremento-frequência)
   
-  var i = 0;
-  for (i; i <tarefas.length; i++) {
+  for (let i = 0; i <tarefas.length; i++) {
     let novaTarefa = document.createElement("li"); //cria li dentro da variável
     novaTarefa.textContent = tarefas[i]; //adiciona o texto da tarefa dentro do li
+
+    let botaoRemover = document.createElement('button'); //cria botão de remover
+    botaoRemover.className = "remover"; //adiciona classe ao botão de remover
+    botaoRemover.textContent = "Remover"; //adiciona texto ao botão de remover
+    botaoRemover.onclick = () => removerTarefa(i); //adiciona evento de click ao botão de remover/ "=>" para chamar a função removerTarefa
+
+    novaTarefa.appendChild(botaoRemover); //adiciona o botão de remover dentro do li
     listaTarefas.appendChild(novaTarefa); //adciona elemento filho, que é o li
-
-  
   }
+}
 
+function removerTarefa(i) {
+  tarefas.splice(i, 1); //remove a tarefa do array de tarefas
+  renderizarTarefas(); //chama a função renderizarTarefas para atualizar a lista de tarefas
 }
