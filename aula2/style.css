@@ -104,7 +104,7 @@ button.editar:hover {
     background-color: #A34743;
 }
 
-.botao_lista:hover {
+.botao_lista:hover { /* Adiciona efeito hover ao botão */
     background-color: #60041A;
     color: #F4F0EA;
 }
